@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import ReactImageCrop from './ReactImageCrop';
+import {Button, Modal} from "react-bootstrap";
 
-function App() {
+const App = ()  => {
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>React image crop</h1>
+        <Button variant="primary" onClick={handleShow}>
+            Upload Image
+        </Button>
+
+        <Modal show={show} onHide={handleClose}>
+            <div style={{padding: "10px"}}>
+                <ReactImageCrop/>
+            </div>
+        </Modal>
     </div>
   );
 }
